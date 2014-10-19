@@ -55,7 +55,7 @@ app.post("/", function(req, res) {
 
 app.get("/tenants/:manager_id", function(req, res) {
 	var id =req.params.manager_id.toString();
-	db.query("select tenants.*, managers.property from tenants join managers on tenants.man_id = managers.id where managers.id =$1;", [id], function(error, result) {
+	db.query("select tenants.*, managers.property from tenants join managers on tenants.man_id = managers.id where managers.id =$1 order by id;", [id], function(error, result) {
 	    if (!error) {
 		    res.render("tenants.ejs", {
 				allTenants: result.rows,
@@ -73,8 +73,8 @@ app.post("/tenants/:manager_id", function(req, res) {
 		});
 });
 
-app.put("/tenants/:manager_id", function(req, res){
-	db.query("UPDATE tenants SET firstname='$1', lastname='$2' WHERE tenant.id=$3;", [req.body.tenantfirst, req.body.tenantlast, req.params.tenantid],
+app.put("/tenants/:manager_id/:tenant_id", function(req, res){
+	db.query("UPDATE tenants SET firstname=$1, lastname=$2 WHERE id=$3;", [req.body.tenantfirst, req.body.tenantlast, req.params.tenant_id],
 	function(error, result) {
 			console.log(error);
 			res.redirect("/tenants/" + req.params.manager_id);

@@ -111,7 +111,7 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Tenant</h4>
 			</div>
-		<form method="post" action="/tenants/<%= manager_id %>?_method=put">
+		<form id="editForm" method="post" action="">
 			<div class="modal-body">
 				<h4>First Name</h4>
 				<div class="margin-top-20">
@@ -145,6 +145,7 @@
 	     $(".modal-body #tenantlast").val( lastname );
 	     var tenantId = $(this).data('id');
 	     $(".modal-body #tenantid").val( id );
+	     $("#editForm").attr('action', '/tenants/<%= manager_id %>/' + tenantId + '?_method=put');
 	});
 </script>
 
