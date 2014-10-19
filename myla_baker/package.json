@@ -1,0 +1,17 @@
+{
+  "name": "Apartment_Management_App",
+  "version": "1.0.0",
+  "description": "App using Postgres",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Myla Baker",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "ejs": "^1.0.0",
+    "express": "^4.9.7",
+    "pg": "^3.6.0"
+  }
+}
