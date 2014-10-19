@@ -73,4 +73,13 @@ app.post("/tenants/:manager_id", function(req, res) {
 		});
 });
 
+app.put("/tenants/:manager_id", function(req, res){
+	db.query("UPDATE tenants SET firstname='$1', lastname='$2' WHERE tenant.id=$3;", [req.body.tenantfirst, req.body.tenantlast, req.params.tenantid],
+	function(error, result) {
+			console.log(error);
+			res.redirect("/tenants/" + req.params.manager_id);
+	});
+});
+
+
 app.listen(3000);
