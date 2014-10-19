@@ -62,10 +62,10 @@ app.get("/tenants/:manager_id", function(req, res) {
 });
 
 app.post("/tenants/:manager_id", function(req, res) {
-	db.query("INSERT INTO tenants (firstname, lastname, man_id) VALUES ($1, $2, $3);", [req.body.tenantfirst, req.body.tenantlast, req.params.id],
+	db.query("INSERT INTO tenants (firstname, lastname, man_id) VALUES ($1, $2, $3);", [req.body.tenantfirst, req.body.tenantlast, req.params.manager_id],
 		function(error, result) {
 			console.log(error);
-			res.redirect("/tenants/:manager_id");
+			res.redirect("/");
 		});
 });
 

@@ -74,7 +74,7 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add a Tenant</h4>
 			</div>
-		<form method="post" action="/tenants/:manager_id">
+		<form method="post" action="/tenants/<%= allTenants.man_id %>">
 			<div class="modal-body">
 				<h4>First Name</h4>
 				<div class="margin-top-20">
@@ -88,7 +88,7 @@
 				<div class="margin-top-20">
 					<select class="form-control" id="tenant-prop-select">
 						<% for (var i=0; i <allTenants.length; i++) { %>
-							<option name="man_id" value="<%= i%>"><%= allTenants[i].property %></option>
+							<option id="id" value="<%= i%>"><%= allTenants[i].property %></option>
 						<% } %>
 					</select>
 				</div>
