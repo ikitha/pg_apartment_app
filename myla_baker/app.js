@@ -90,5 +90,11 @@ app.put("/tenants/:manager_id/:tenant_id", function(req, res){
 	});
 });
 
+app.delete("/tenants/:manager_id/:tenant_id", function(req, res){
+	db.query("DELETE from tenants WHERE id=$1;", [req.params.tenant_id], 
+		function(error, result){
+			res.redirect("/tenants/" + req.params.manager_id);
+	});
+});
 
 app.listen(3000);

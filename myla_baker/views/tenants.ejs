@@ -122,14 +122,14 @@
 					<input id="tenantlast" name="tenantlast" class="form-control" placeholder="<%=allTenants.lastname%>" />
 				</div>
 			</div>
+		</form>
 			<div class="modal-footer">
-			<form method="post" action="/tenants/<%= manager_id %>?_method=delete">
-				<button id="delete-tenant" type="submit" class="btn btn-danger" style="float: left">Delete Tenant</button>
+			<form id="deleteForm" method="post" action="">
+				<button id="delete-tenant" type="submit" form="deleteForm" class="btn btn-danger" style="float: left">Delete Tenant</button>
 			</form>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button id="save-tenant" type="submit" class="btn btn-primary">Save Changes</button>
+				<button form="editForm" id="save-tenant" type="submit" class="btn btn-primary">Save Changes</button>
 			</div>
-		</form>
 		</div>
 	</div>
 </div>
@@ -143,9 +143,10 @@
 	     $(".modal-body #tenantfirst").val( firstname );
 	     var lastname = $(this).data('lastname');
 	     $(".modal-body #tenantlast").val( lastname );
-	     var tenantId = $(this).data('id');
+	     var tenantId = $(this).data('tenantid');
 	     $(".modal-body #tenantid").val( id );
 	     $("#editForm").attr('action', '/tenants/<%= manager_id %>/' + tenantId + '?_method=put');
+	     $("#deleteForm").attr('action', '/tenants/<%= manager_id %>/' + tenantId + '?_method=delete');
 	});
 </script>
 
