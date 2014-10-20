@@ -53,13 +53,22 @@ app.post("/", function(req, res) {
 		});
 });
 
+var property_array;
+app.get("/", function(req, res){
+    db.query("select property from managers;", 
+        function(error, result){
+        property_array = result.rows
+    });
+});
+
 app.get("/tenants/:manager_id", function(req, res) {
 	var id =req.params.manager_id.toString();
 	db.query("select tenants.*, managers.property from tenants join managers on tenants.man_id = managers.id where managers.id =$1 order by id;", [id], function(error, result) {
 	    if (!error) {
 		    res.render("tenants.ejs", {
 				allTenants: result.rows,
-				manager_id: req.params.manager_id
+				manager_id: req.params.manager_id,
+				allProperties: property_array
 			});
 		}
 	});
